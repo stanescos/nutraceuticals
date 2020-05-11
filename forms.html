@@ -16,162 +16,158 @@
     <div class="container">
     <h1 class="brand"><span>Nutraceuticals</span> Quiz</h1>
       <!-- Default form subscription -->
-<form class="insert text-center border border-light p-5" action="#!" id="quiz_form">
+<form class="insert text-center border border-light p-5 shadowbox" action="#!" id="quiz_form">
 
   <div class="form-group">
     <!-- Name -->
+    <div class="row">
+      <div class="col-sm-5">
     <label for="formGroupExampleInput">Name</label>
     <input type="text" class="form-control" id="client_name" placeholder="Name" name="client_name">
-
+      </div>
 
     <!-- Email -->
+    <div class="col-sm-4">
     <label for="exampleInputEmail1">Email address</label>
     <input type="email" class="form-control" id="client_email" aria-describedby="emailHelp" placeholder="Enter email" name="client_email">
-    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-
+    </div>
 
 
   <!-- Date -->
+  <div class="col-sm-3">
     <label for="formGroupExampleInput">Date of Birth</label>
     <input type="Date" class="form-control" id="client_date" name="client_date" placeholder="Date">
-
+  </div>
+  </div>
 <br>
   <!-- Beneficios -->
   <label for="formGroupExampleInput">Benefits</label><br>
   <div class="row text-left">
-    <div class="col-4">
+    <div class="col-sm-4">
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="client_benefits" value="Aesthetics">
+        <input class="form-check-input" type="checkbox" name="client_benefits" id="client_benefits1" value="Aesthetics">
         <label class="form-check-label">Aesthetics</label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="client_benefits" value="Anti-Inflammatory">
+        <input class="form-check-input" type="checkbox" name="client_benefits" id="client_benefits2" value="Anti-Inflammatory">
         <label class="form-check-label">Anti-Inflammatory</label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="client_benefits" value="Bone and Joint Health">
+        <input class="form-check-input" type="checkbox" name="client_benefits" id="client_benefits3" value="Bone and Joint Health">
         <label class="form-check-label">Anti-Oxidant</label>
     </div>
     <div class="form-check">
-      <input class="form-check-input" type="checkbox" name="client_benefits" value="soy">
+      <input class="form-check-input" type="checkbox" name="client_benefits" id="client_benefits4" value="soy">
       <label class="form-check-label">Bone and Joint Health</label>
     </div>
     <div class="form-check">
-      <input class="form-check-input" type="checkbox" name="client_benefits" value="soy">
+      <input class="form-check-input" type="checkbox" name="client_benefits" id="client_benefits5" value="soy">
       <label class="form-check-label">General Health</label>
     </div>
   
     <div class="form-check">
-      <input class="form-check-input" type="checkbox" name="client_benefits" value="soy">
+      <input class="form-check-input" type="checkbox" name="client_benefits" id="client_benefits6" value="soy">
       <label class="form-check-label">Hormone Regulation</label>
     </div>
     <div class="form-check">
-      <input class="form-check-input" type="checkbox" name="client_benefits" value="soy">
+      <input class="form-check-input" type="checkbox" name="client_benefits" id="client_benefits7" value="soy">
       <label class="form-check-label">Pregnancy Support</label>
     </div>
   </div>
 
-    <div class="col-4">
+    <div class="col-sm-4">
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="client_benefits" value="soy">
+        <input class="form-check-input" type="checkbox" name="client_benefits" id="client_benefits8" value="soy">
         <label class="form-check-label">Cardiovascular Health</label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="client_benefits" value="soy">
+        <input class="form-check-input" type="checkbox" name="client_benefits" id="client_benefits9" value="soy">
         <label class="form-check-label">Cognitive Function and Brain Health</label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="client_benefits" value="soy">
+        <input class="form-check-input" type="checkbox" name="client_benefits" id="client_benefits10" value="soy">
         <label class="form-check-label">Digestive Health</label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="client_benefits" value="soy">
+        <input class="form-check-input" type="checkbox" name="client_benefits" id="client_benefits11" value="soy">
         <label class="form-check-label">Diuretic</label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="client_benefits" value="soy">
+        <input class="form-check-input" type="checkbox" name="client_benefits" id="client_benefits12" value="soy">
         <label class="form-check-label">Immunity</label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="client_benefits" value="soy">
+        <input class="form-check-input" type="checkbox" name="client_benefits" id="client_benefits13" value="soy">
         <label class="form-check-label">Libido and Sexual Health</label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="client_benefits" value="soy">
+        <input class="form-check-input" type="checkbox" name="client_benefits" id="client_benefits14" value="soy">
         <label class="form-check-label">Sleep Regulation</label>
       </div>
     </div>
 
-    <div class="col-4">
+    <div class="col-sm-4">
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" name="client_benefits" value="soy">
+        <input class="form-check-input" type="checkbox" name="client_benefits" id="client_benefits15" value="soy">
         <label class="form-check-label">Energy and Mood</label>
       </div>
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" name="client_benefits" value="soy">
+          <input class="form-check-input" type="checkbox" name="client_benefits" id="client_benefits16" value="soy">
           <label class="form-check-label">Eye Health</label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" name="client_benefits" value="soy">
+          <input class="form-check-input" type="checkbox" name="client_benefits" id="client_benefits17" value="soy">
           <label class="form-check-label">Fat Loss</label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" name="client_benefits" value="soy">
+          <input class="form-check-input" type="checkbox" name="client_benefits" id="client_benefits18" value="soy">
           <label class="form-check-label">Fatigue Prevention</label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" name="client_benefits" value="soy">
+          <input class="form-check-input" type="checkbox" name="client_benefits" id="client_benefits19" value="soy">
           <label class="form-check-label">Muscle Gain</label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" name="client_benefits" value="soy">
+          <input class="form-check-input" type="checkbox" name="client_benefits" id="client_benefits20" value="soy">
           <label class="form-check-label">Muscle Health</label>
         </div>
     </div>
-
   </div>
-  
 
-  
-  
-  
-
-
-
-</div>
 <br><br>
+
 <!--Allergy-->
   <label for="formGroupExampleInput">Allergy</label><br>
 <div class="form-check form-check-inline">
   <input class="form-check-input" type="checkbox" name="client_allergy" value="walnuts">
-  <label class="form-check-label" for="inlineCheckbox1">Walnuts</label>
+  <label class="form-check-label">Walnuts</label>
 </div>
 <div class="form-check form-check-inline">
   <input class="form-check-input" type="checkbox" name="client_allergy" value="milk">
-  <label class="form-check-label" for="inlineCheckbox2">Milk</label>
+  <label class="form-check-label">Milk</label>
 </div>
 <div class="form-check form-check-inline">
   <input class="form-check-input" type="checkbox" name="client_allergy" value="soy">
   <label class="form-check-label">Soy</label>
 </div>
 
-<br><br><br>
-
-
     <!-- Sign in button -->
+    <br><br>
     <button class="btn btn-info" type="submit">Submit</button>
+    </div>
 
 </form>
 
-</div>
-<div class="tableh">
-<div class="container insert wrapper tableh">Result:
-
+<div class="tableh mt-1">
+<div class="container insert">
+  <h4>Result:</h4>
+<br>
   <table class="table table-hover" id="result_table">
     <thead>
       <tr>
         <th scope="col">#</th>
         <th scope="col">Name</th>
+        <th scope="col">Know as</th>
         <th scope="col">Price</th>
       </tr>
     </thead>
@@ -180,6 +176,7 @@
     </tbody>
   </table>
 
+</div>
 </div>
 </div>
 

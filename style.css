@@ -88,6 +88,21 @@
     outline:0;
     transition: background-color 2s ease-out;
   }
+
+  .resultbutton{
+    width:20%;
+    padding:1em;
+    border:1px solid #c9e6ff;
+    background:#c9e6ff;
+    border:0;
+    text-transform: uppercase;
+  }
+  .resultbutton:hover{
+    background:#92bde7;
+    color:#fff;
+    outline:0;
+    transition: background-color 2s ease-out;
+  }
   
 .alert{
 text-align: center;
@@ -101,7 +116,9 @@ display: none;
 .tableh{
 display: none;
 }
-
+.shadowbox{
+box-shadow: 0 0 20px 0 rgba(72,94,116,0.7);
+}
 
   /* LARGE SCREENS */
   @media(min-width:700px){

@@ -35,6 +35,10 @@
             <input type="text" name="name" id="name">
           </p>
           <p>
+            <label>Know as</label>
+            <input type="text" name="knowas" id="knowas">
+          </p>
+          <p>
             <label>Origin</label>
             <input type="text" name="origin" id="origin">
           </p>
@@ -58,7 +62,6 @@
             <label>Price</label>
             <input type="text" name="price" id="price">
           </p>
-        <br>
 
           <!-- Outcomes -->
 
@@ -195,6 +198,27 @@
     </form>
     </div>
   </div>
+
+    <div class="container insert shadowbox mt-1">
+        <button type="button" class="resultbutton" data-toggle="button" aria-pressed="false" autocomplete="off" onclick="showtable()" id="showtable">Nutraceuticals</button>
+
+    <br>
+      <table class="table table-hover tableh mt-4" id="product_table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Know as</th>
+          </tr>
+        </thead>
+        <tbody id="product_row">
+    
+        </tbody>
+      </table>
+    
+    </div>
+    </div>
+
 </div>
 <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>

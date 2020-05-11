@@ -24,6 +24,7 @@ var firebaseConfig = {
   for (var i = 0; i < keys.length; i++){
     var k = keys[i];
     var name = products[k].name;
+    var knowas = products[k].knowas;
     var origin = products[k].origin;
     var score = products[k].score;
     var main_out = products[k].main_out;
@@ -37,14 +38,15 @@ var firebaseConfig = {
     results = results+`<tr>
     <th scope="row">`+(i+1)+`</th>
     <td>`+name+`</td>
+    <td>`+knowas+`</td>
     <td>`+price+`</td>
     </tr>`
 
   }
   }
 document.getElementById('result_row').innerHTML = results;
-
 }
+
 function errData(err) {
   console.log(err);
 }
@@ -55,11 +57,10 @@ function errData(err) {
 function getResult(e){
   e.preventDefault();
   document.querySelector('.tableh').style.display = 'block';
-  // let data = $('#quiz_form').serializeArray()
   var data = {};
   var dataArray = $("form").serializeArray();
   for(var i=0;i<dataArray.length;i++){
-    if (dataArray[i].name == "client_benefits") {
+    if (dataArray[i].name == "client_benefits" || dataArray[i].name == "client_allergy") {
      if (!data[dataArray[i].name]){
       data[dataArray[i].name] = []
      }
@@ -68,7 +69,7 @@ function getResult(e){
       data[dataArray[i].name] = dataArray[i].value;
   }
 }
-  console.log(data)
+  console.log(data) 
 }
 
 

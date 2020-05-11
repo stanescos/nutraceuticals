@@ -15,7 +15,38 @@ var firebaseConfig = {
   // Reference product collection
   var productRef = firebase.database().ref('products');
 
-  
+
+
+ productRef.on('value', gotData, errData);
+ function gotData(data) {
+  var products = data.val();
+  var keys = Object.keys(products);
+  var product_list = ''
+  for (var i = 0; i < keys.length; i++){
+    var k = keys[i];
+    var name = products[k].name;
+    var knowas = products[k].knowas;
+
+    // Table Generator
+    product_list = product_list+`<tr>
+    <th scope="row">`+(i+1)+`</th>
+    <td>`+name+`</td>
+    <td>`+knowas+`</td>
+    </tr>`
+  }
+document.getElementById('product_row').innerHTML = product_list;
+}
+
+function showtable(){
+  document.querySelector('.tableh').style.display = 'block';
+}
+
+
+
+function errData(err) {
+  console.log(err);
+}
+
   // Listen for form submit
   document.getElementById('product_form').addEventListener('submit', submitForm);
   
@@ -25,6 +56,7 @@ var firebaseConfig = {
   
     // Get values
     var name = getInputVal('name');
+    var knowas = getInputVal('knowas');
     var origin = getInputVal('origin');
     var category = getInputVal('category');
     var uses = getInputVal('uses');
@@ -64,7 +96,7 @@ var firebaseConfig = {
     
   
     // Save product
-    saveProduct(name, origin, category, uses, source, type, price, main_out, main_evi, sec_out, sec_evi, thi_out, thi_evi, fou_out, fou_evi, toxicity, side_efe, warn_fpw, age_range, comp1, comp1_pn, comp1_evi, comp2, comp2_pn, comp2_evi, main_admin_form, owtci, main_dosage, main_dose, sec_dosage, sec_dose, thi_dosage, thi_dose, fou_dosage, fou_dose, score);
+    saveProduct(name, knowas, origin, category, uses, source, type, price, main_out, main_evi, sec_out, sec_evi, thi_out, thi_evi, fou_out, fou_evi, toxicity, side_efe, warn_fpw, age_range, comp1, comp1_pn, comp1_evi, comp2, comp2_pn, comp2_evi, main_admin_form, owtci, main_dosage, main_dose, sec_dosage, sec_dose, thi_dosage, thi_dose, fou_dosage, fou_dose, score);
   
     // Show alert
     document.querySelector('.alert').style.display = 'block';
@@ -84,10 +116,11 @@ var firebaseConfig = {
   }
   
   // Save product to firebase
-  function saveProduct(name, origin, category, uses, source, type, price, main_out, main_evi, sec_out, sec_evi, thi_out, thi_evi, fou_out, fou_evi, toxicity, side_efe, warn_fpw, age_range, comp1, comp1_pn, comp1_evi, comp2, comp2_pn, comp2_evi, main_admin_form, owtci, main_dosage, main_dose, sec_dosage, sec_dose, thi_dosage, thi_dose, fou_dosage, fou_dose, score){
+  function saveProduct(name, knowas, origin, category, uses, source, type, price, main_out, main_evi, sec_out, sec_evi, thi_out, thi_evi, fou_out, fou_evi, toxicity, side_efe, warn_fpw, age_range, comp1, comp1_pn, comp1_evi, comp2, comp2_pn, comp2_evi, main_admin_form, owtci, main_dosage, main_dose, sec_dosage, sec_dose, thi_dosage, thi_dose, fou_dosage, fou_dose, score){
     var newProductRef = productRef.push();
     newProductRef.set({
       name:name,
+      knowas:knowas,
       origin:origin,
       category:category,
       uses:uses,
@@ -124,3 +157,5 @@ var firebaseConfig = {
       score:score
     });
   }
+
+  
