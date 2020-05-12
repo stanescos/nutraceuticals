@@ -11,52 +11,61 @@ var firebaseConfig = {
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
+
   
   // Reference product collection
-  var productRef = firebase.database().ref('products');
+var productRef = firebase.database().ref('products');
 
+// Global Declaration
+var name_pro = [];
+var knowas = [];
+var origin_pro = [];
+var score = [];
+var main_out = [];
+var sec_out = [];
+var thi_out = [];
+var fou_out = [];
+var price = [];
   
  productRef.on('value', gotData, errData);
  function gotData(data) {
   var products = data.val();
   var keys = Object.keys(products);
-  var results = ''
+  var results = '';
   for (var i = 0; i < keys.length; i++){
     var k = keys[i];
-    var name = products[k].name;
-    var knowas = products[k].knowas;
-    var origin = products[k].origin;
-    var score = products[k].score;
-    var main_out = products[k].main_out;
-    var price = products[k].price;
-   if (score != -1) {
-    console.log(name, origin);
-  
-    // document.getElementById('name'+i).innerHTML = name;
-    // document.getElementById('price'+i).innerHTML = price;
+     name_pro[i] = products[k].name;
+     knowas[i] = products[k].knowas;
+     origin_pro[i] = products[k].origin;
+     main_out[i] = products[k].main_out;
+     sec_out[i]= products[k].sec_out;
+     thi_out[i] = products[k].thi_out;
+     fou_out[i] = products[k].fou_out;
+     price[i] = products[k].price;
 
+    //Table Generator
     results = results+`<tr>
     <th scope="row">`+(i+1)+`</th>
-    <td>`+name+`</td>
-    <td>`+knowas+`</td>
-    <td>`+price+`</td>
+    <td>`+name_pro[i]+`</td>
+    <td>`+knowas[i]+`</td>
+    <td>`+price[i]+`</td>
     </tr>`
-
-  }
   }
 document.getElementById('result_row').innerHTML = results;
 }
+
 
 function errData(err) {
   console.log(err);
 }
 
+  
   // Listen for form submit
   document.getElementById('quiz_form').addEventListener('submit', getResult);
   
+
 function getResult(e){
   e.preventDefault();
-  document.querySelector('.tableh').style.display = 'block';
   var data = {};
   var dataArray = $("form").serializeArray();
   for(var i=0;i<dataArray.length;i++){
@@ -69,8 +78,30 @@ function getResult(e){
       data[dataArray[i].name] = dataArray[i].value;
   }
 }
-  console.log(data) 
+for (var i=0; i<main_out.length-1 || i<sec_out.length-1 || i<thi_out.length-1 || i<fou_out.length-1;i++){
+  score[i] = 0;
+for(var j=0; j <= data.client_benefits.length-1 ;j++){
+
+  if(main_out[i] == data.client_benefits[j]){
+    score[i] += 10;
+  }
+  if(sec_out[i] == data.client_benefits[j]){
+    score[i] += 8;
+  }
+       if(thi_out[i] == data.client_benefits[j]){
+    score[i] += 6;
+  }
+       if(fou_out[i] == data.client_benefits[j]){
+    score[i] += 4;
+  }     
 }
+
+} 
+
+console.log(score);
+document.querySelector('.tableh').style.display = 'block';
+}
+
 
 
 
