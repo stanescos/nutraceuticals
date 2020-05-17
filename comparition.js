@@ -26,12 +26,12 @@ var sec_out = [];
 var thi_out = [];
 var fou_out = [];
 var price = [];
+var aux = [];
   
  productRef.on('value', gotData, errData);
  function gotData(data) {
   var products = data.val();
   var keys = Object.keys(products);
-  var results = '';
   for (var i = 0; i < keys.length; i++){
     var k = keys[i];
      name_pro[i] = products[k].name;
@@ -42,18 +42,15 @@ var price = [];
      thi_out[i] = products[k].thi_out;
      fou_out[i] = products[k].fou_out;
      price[i] = products[k].price;
-
-    //Table Generator
-    results = results+`<tr>
-    <th scope="row">`+(i+1)+`</th>
-    <td>`+name_pro[i]+`</td>
-    <td>`+knowas[i]+`</td>
-    <td>`+price[i]+`</td>
-    </tr>`
+     score[i] = 0;
+     var name1 = name_pro[i];
+     var knowas1 = knowas[i];
+     var price1 = price[i];
+     var score1 = score[i];
+     aux.push({score1,name1,knowas1,price1});
   }
-document.getElementById('result_row').innerHTML = results;
-}
 
+}
 
 function errData(err) {
   console.log(err);
@@ -65,6 +62,7 @@ function errData(err) {
   
 
 function getResult(e){
+  var results = '';
   e.preventDefault();
   var data = {};
   var dataArray = $("form").serializeArray();
@@ -79,27 +77,49 @@ function getResult(e){
   }
 }
 for (var i=0; i<main_out.length-1 || i<sec_out.length-1 || i<thi_out.length-1 || i<fou_out.length-1;i++){
-  score[i] = 0;
+  //score[i] = 0;
 for(var j=0; j <= data.client_benefits.length-1 ;j++){
 
   if(main_out[i] == data.client_benefits[j]){
-    score[i] += 10;
+    aux[i].score1 += 10;
   }
   if(sec_out[i] == data.client_benefits[j]){
-    score[i] += 8;
+    aux[i].score1 += 8;
   }
        if(thi_out[i] == data.client_benefits[j]){
-    score[i] += 6;
+    aux[i].score1 += 6;
   }
        if(fou_out[i] == data.client_benefits[j]){
-    score[i] += 4;
+    aux[i].score1 += 4;
   }     
 }
 
+
 } 
 
-console.log(score);
+aux.sort(function(current, next){return next.score1 - current.score1});
+
+//console.log(aux.knowas);
+//quickSort(score,0 ,score.length -1)
+//aux.sort((a, b) => b - a);
+//var aa;
+//var novo = map(value => ({'key':value, 'val': aa = knowas.map() }));
+console.log(aux);
+//console.log(novo);
 document.querySelector('.tableh').style.display = 'block';
+
+for(var i=0;i<aux.length;i++){
+  if(aux[0].score1 - 10 <= aux[i].score1){
+//Table Generator
+    results = results+`<tr>
+    <th scope="row">`+(i+1)+`</th>
+    <td>`+aux[i].name1+`</td>
+    <td>`+aux[i].knowas1+`</td>
+    <td>`+aux[i].price1+`</td>
+    </tr>`}
+}
+
+document.getElementById('result_row').innerHTML = results;
 }
 
 
