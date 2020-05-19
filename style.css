@@ -119,6 +119,9 @@ display: none;
 .shadowbox{
 box-shadow: 0 0 20px 0 rgba(72,94,116,0.7);
 }
+.rangeh{
+  display: none;
+}
 
   /* LARGE SCREENS */
   @media(min-width:700px){
