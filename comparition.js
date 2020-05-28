@@ -86,13 +86,11 @@ function gotDataCli(data) {
      var outcome1 = '';
      aux.push({score1,name1,knowas1,price1,outcome1});
   }
-
 }
 console.log(main_evi)
 function errData(err) {
   console.log(err);
 }
-
 
   // Listen for form submit
   $('form').submit(function(e){
@@ -115,18 +113,18 @@ function errData(err) {
 }
 
 //source
-  if (data.client_allergy != null){
+if (data.client_allergy != null){
   for(var p=0;p<sourceR.length;p++){
     var asource = sourceR[p];
     for(var x=0;x<asource.length;x++){
-   for(var o=0; o <= data.client_allergy.length-1 ;o++){ 
-    if(asource[x] == data.client_allergy[o]){
-    data_aux[p].score1 = -1;
-   }
+      for(var o=0; o <= data.client_allergy.length-1 ;o++){ 
+        if(asource[x] == data.client_allergy[o]){
+        data_aux[p].score1 = -1;
+        }
+      }
+    }
   }
 }
-}
-  }
 
 if (data.client_benefits != null){
 for (var i=0; i<main_out.length || i<sec_out.length || i<thi_out.length || i<fou_out.length;i++){
@@ -210,6 +208,10 @@ document.querySelector('.tableh').style.display = 'block';
 }
 
 
+// function rangeshowup(checkboxElem) {
+// if (checkboxElem.checked == true){
+// //document.querySelector('.tableh').style.display = 'block';
+// $(checkboxElem).parent().find('rangeh').style.display = 'block';
 
 // Build 0.6 start
 
