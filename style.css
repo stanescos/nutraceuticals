@@ -113,11 +113,23 @@ margin-bottom: 10px;
 display: none;
   }  
 
+  .badalert{
+    text-align: center;
+    padding: 10px;
+    background: #8B0000;
+    color: white;
+    margin-bottom: 10px;
+    display: none;
+      }  
+
 .tableh{
 display: none;
 }
 .shadowbox{
 box-shadow: 0 0 20px 0 rgba(72,94,116,0.7);
+}
+.rangeh{
+  display: none;
 }
 
   /* LARGE SCREENS */
