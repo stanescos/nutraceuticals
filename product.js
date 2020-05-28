@@ -16,7 +16,6 @@ var firebaseConfig = {
   var productRef = firebase.database().ref('products');
 
 
-
  productRef.on('value', gotData, errData);
  function gotData(data) {
   var products = data.val();
@@ -28,17 +27,68 @@ var firebaseConfig = {
     var knowas = products[k].knowas;
 
     // Table Generator
+    //0.0.6: Add edit icon
     product_list = product_list+`<tr>
-    <th scope="row">`+(i+1)+`</th>
+    <th scope="row" id=id>`+(i+1)+`</th>
     <td>`+name+`</td>
-    <td>`+knowas+`</td>
+    <td>`+knowas+`<button type="button" data-toggle="button" aria-pressed="false" autocomplete="off" class="btn btn-sm showEdit" id=`+(i+1)+`>Edit<i class="fa fa-edit"></i></button></td>
     </tr>`
+    //0.0.6: End of add
   }
 document.getElementById('product_row').innerHTML = product_list;
 }
 
 function showtable(){
   document.querySelector('.tableh').style.display = 'block';
+  
+  //0.0.6: Show the selected object
+  $('.showEdit').click(function () {
+    var id = $(this).attr('id');
+    productRef.on('value', function (data){
+      var products = data.val();
+      var keys = Object.keys(products);
+      var k = keys[id-1];
+      $('#name').val(products[k].name)
+      $('#knowas').val(products[k].knowas) 
+      $('#origin').val(products[k].origin) 
+      $('#category').val(products[k].category) 
+      $('#uses').val(products[k].uses) 
+      $('#source').val(products[k].source) 
+      $('#type').val(products[k].type) 
+      $('#price').val(products[k].price) 
+      $('#main_out').val(products[k].main_out) 
+      $('#main_evi').val(products[k].main_evy) 
+      $('#sec_out').val(products[k].sec_out) 
+      $('#sec_evi').val(products[k].sec_evi) 
+      $('#thi_out').val(products[k].thi_out) 
+      $('#thi_evi').val(products[k].thi_evi) 
+      $('#fou_out').val(products[k].fou_out) 
+      $('#fou_evi').val(products[k].fou_evi) 
+      $('#toxicity').val(products[k].toxicity) 
+      $('#side_efe').val(products[k].side_efe) 
+      $('#warn_fpw').val(products[k].warn_fpw) 
+      $('#age_range').val(products[k].age_range) 
+      $('#comp1').val(products[k].comp1) 
+      $('#comp1_pn').val(products[k].comp1_pn) 
+      $('#comp1_evi').val(products[k].ecomp1_evi) 
+      $('#comp2').val(products[k].comp2) 
+      $('#comp2_pn').val(products[k].comp2_pn) 
+      $('#comp2_evi').val(products[k].comp2_evi) 
+      $('#main_admin_form').val(products[k].main_admin_form) 
+      $('#owtci').val(products[k].owtci) 
+      $('#main_dosage').val(products[k].main_dosage) 
+      $('#main_dose').val(products[k].main_dose) 
+      $('#sec_dosage').val(products[k].sec_dosage) 
+      $('#sec_dose').val(products[k].sec_dose) 
+      $('#thi_dosage').val(products[k].thi_dosage) 
+      $('#thi_dose').val(products[k].thi_dose) 
+      $('#fou_dosage').val(products[k].fou_dosage) 
+      $('#fou_dose').val(products[k].fou_dose)
+      $('.submit').attr('id',k);
+      $("html, body").scrollTop(0);
+    }, errData);
+  });
+  //0.0.6
 }
 
 
@@ -117,45 +167,92 @@ function errData(err) {
   
   // Save product to firebase
   function saveProduct(name, knowas, origin, category, uses, source, type, price, main_out, main_evi, sec_out, sec_evi, thi_out, thi_evi, fou_out, fou_evi, toxicity, side_efe, warn_fpw, age_range, comp1, comp1_pn, comp1_evi, comp2, comp2_pn, comp2_evi, main_admin_form, owtci, main_dosage, main_dose, sec_dosage, sec_dose, thi_dosage, thi_dose, fou_dosage, fou_dose, score){
-    var newProductRef = productRef.push();
-    newProductRef.set({
-      name:name,
-      knowas:knowas,
-      origin:origin,
-      category:category,
-      uses:uses,
-      source:source,
-      type:type,
-      price:price,
-      main_out:main_out,
-      main_evi:main_evi,
-      sec_out:sec_out,
-      sec_evi:sec_evi,
-      thi_out:thi_out,
-      thi_evi:thi_evi,
-      fou_out:fou_out,
-      toxicity:toxicity,
-      side_efe:side_efe,
-      warn_fpw:warn_fpw,
-      age_range:age_range,
-      comp1:comp1,
-      comp1_pn:comp1_pn,
-      comp1_evi:comp1_evi,
-      comp2:comp2,
-      comp2_pn:comp2_pn,
-      comp2_evi:comp2_evi,
-      main_admin_form:main_admin_form,
-      owtci:owtci,
-      main_dosage:main_dosage,
-      main_dose:main_dose,
-      sec_dosage:sec_dosage,
-      sec_dose:sec_dose,
-      thi_dosage:thi_dosage,
-      thi_dose:thi_dose,
-      fou_dosage:fou_dosage,
-      fou_dose:fou_dose,
-      score:score
-    });
+    //0.0.6: Added if
+    if($('.submit').attr('id') == ''){
+    //End
+      var newProductRef = productRef.push();
+      newProductRef.set({
+        name:name,
+        knowas:knowas,
+        origin:origin,
+        category:category,
+        uses:uses,
+        source:source,
+        type:type,
+        price:price,
+        main_out:main_out,
+        main_evi:main_evi,
+        sec_out:sec_out,
+        sec_evi:sec_evi,
+        thi_out:thi_out,
+        thi_evi:thi_evi,
+        fou_out:fou_out,
+        toxicity:toxicity,
+        side_efe:side_efe,
+        warn_fpw:warn_fpw,
+        age_range:age_range,
+        comp1:comp1,
+        comp1_pn:comp1_pn,
+        comp1_evi:comp1_evi,
+        comp2:comp2,
+        comp2_pn:comp2_pn,
+        comp2_evi:comp2_evi,
+        main_admin_form:main_admin_form,
+        owtci:owtci,
+        main_dosage:main_dosage,
+        main_dose:main_dose,
+        sec_dosage:sec_dosage,
+        sec_dose:sec_dose,
+        thi_dosage:thi_dosage,
+        thi_dose:thi_dose,
+        fou_dosage:fou_dosage,
+        fou_dose:fou_dose,
+        score:score
+      });
+    }
+    //0.0.6
+    else{
+      productRef.child($('.submit').attr('id')).update({
+        name:name,
+        knowas:knowas,
+        origin:origin,
+        category:category,
+        uses:uses,
+        source:source,
+        type:type,
+        price:price,
+        main_out:main_out,
+        main_evi:main_evi,
+        sec_out:sec_out,
+        sec_evi:sec_evi,
+        thi_out:thi_out,
+        thi_evi:thi_evi,
+        fou_out:fou_out,
+        toxicity:toxicity,
+        side_efe:side_efe,
+        warn_fpw:warn_fpw,
+        age_range:age_range,
+        comp1:comp1,
+        comp1_pn:comp1_pn,
+        comp1_evi:comp1_evi,
+        comp2:comp2,
+        comp2_pn:comp2_pn,
+        comp2_evi:comp2_evi,
+        main_admin_form:main_admin_form,
+        owtci:owtci,
+        main_dosage:main_dosage,
+        main_dose:main_dose,
+        sec_dosage:sec_dosage,
+        sec_dose:sec_dose,
+        thi_dosage:thi_dosage,
+        thi_dose:thi_dose,
+        fou_dosage:fou_dosage,
+        fou_dose:fou_dose,
+        score:score
+      });
+      $('.submit').attr('id','');
+    }
+    //End of 0.0.6
   }
 
   

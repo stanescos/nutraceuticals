@@ -15,7 +15,10 @@ var firebaseConfig = {
   
   // Reference product collection
 var productRef = firebase.database().ref('products');
+// Reference client collection
 var clientRef = firebase.database().ref('clients')
+ // Reference combo collection
+var comboRef = firebase.database().ref('combo');
 
 // Global Declaration
 var name_pro = [];
@@ -29,8 +32,9 @@ var price = [];
 var aux = [];
 var source= [];
 var sourceR = [];
-
-// Build 0.6
+var comboA = [];
+var comboR = [];
+var auxC = [];
 var name_cli = [];
 var email_cli = [];
 var date_cli = [];
@@ -40,7 +44,7 @@ var sec_evi = [];
 var thi_evi = [];
 var fou_evi = [];
 
-// Build 0.6 start
+
 // Read clients from database
 clientRef.on('value', gotDataCli, errData);
 function gotDataCli(data) {
@@ -53,8 +57,6 @@ function gotDataCli(data) {
     date_cli[i] = clients[k].date;
  }
 }
-
-// Build 0.6 end
 
 // Read products from database
  productRef.on('value', gotData, errData);
@@ -80,18 +82,42 @@ function gotDataCli(data) {
      var knowas1 = knowas[i];
      var price1 = price[i];
      var score1 = 0;
-     var sourceA = [];
+     var sourceA = []
      sourceA = source[i].split(", ");
      sourceR.push(sourceA);
      var outcome1 = '';
      aux.push({score1,name1,knowas1,price1,outcome1});
   }
+
 }
-console.log(main_evi)
+
+
+//combo
+ comboRef.on('value', gotData1, errData);
+ function gotData1(data) {
+  var combo = data.val();
+  var keys = Object.keys(combo);
+  for (var i = 0; i < keys.length; i++){
+    var k = keys[i];
+    comboA[i] = combo[k].combo;
+    var comboB = comboA[i];
+    var score2 = 0;
+    auxC.push({score2, comboB});
+
+    var comboS = [];
+    comboS = comboA[i].split(", ");
+    comboR.push(comboS);
+  }
+
+  //console.log(comboR);
+}
+//combo
+
 function errData(err) {
   console.log(err);
 }
 
+  
   // Listen for form submit
   $('form').submit(function(e){
   e.preventDefault();
@@ -99,6 +125,7 @@ function errData(err) {
     return Element;
   });
   var results = '';
+  var combo = '';
   var data = {};
   var dataArray = $("form").serializeArray();
   for(var i=0;i<dataArray.length;i++){
@@ -113,18 +140,19 @@ function errData(err) {
 }
 
 //source
-if (data.client_allergy != null){
+  //asource = sourceR[n];
+  if (data.client_allergy != null){
   for(var p=0;p<sourceR.length;p++){
     var asource = sourceR[p];
     for(var x=0;x<asource.length;x++){
-      for(var o=0; o <= data.client_allergy.length-1 ;o++){ 
-        if(asource[x] == data.client_allergy[o]){
-        data_aux[p].score1 = -1;
-        }
-      }
-    }
-  }
+   for(var o=0; o <= data.client_allergy.length-1 ;o++){ 
+    if(asource[x] == data.client_allergy[o]){
+    data_aux[p].score1 = -1;
+   }//for client allergy
+  }//for asource
 }
+}
+  }
 
 if (data.client_benefits != null){
 for (var i=0; i<main_out.length || i<sec_out.length || i<thi_out.length || i<fou_out.length;i++){
@@ -132,8 +160,7 @@ for (var i=0; i<main_out.length || i<sec_out.length || i<thi_out.length || i<fou
   data_aux[i].score1 = 0;
   data_aux[i].outcome1 = '';
 for(var j=0; j <= data.client_benefits.length ;j++){
- //Build 0.6 
-    if(main_out[i] == data.client_benefits[j]){
+  if(main_out[i] == data.client_benefits[j]){
     if(main_evi[i] == 'Very High' || data.rclient_benefits[j] == 5){
     data_aux[i].score1 += 20 * (data.rclient_benefits[j]);
     }
@@ -181,17 +208,48 @@ for(var j=0; j <= data.client_benefits.length ;j++){
           }
           data_aux[i].outcome1 = fou_out[i] + ' | ' + data_aux[i].outcome1;
           }
-  }     
+        }     
+      }
+    }
+  } 
+//combo
+if(auxC[0].score2 == 0){
+for(var i=0; i<= comboR.length-1; i++){
+  var auxi = comboR[i];
+  for(var j=0; j<auxi.length;j++){
+    for(var k=0; k<data_aux.length;k++){
+      if(auxi[j]==data_aux[k].name1){
+        auxC[i].score2 += data_aux[k].score1;
+      }
+    }
   }
-  }
-  
+}
+}
+
+//combo
+auxC.sort(function(current, next){return next.score2 - current.score2});
+console.log(auxC);
+//console.log(comboR[1]);
 console.log(data_aux);
 data_aux.sort(function(current, next){return next.score1 - current.score1});
 
+//inicio combo
+for(var i=0;i<auxC.length;i++){
+  if(auxC[i].score2 !=0){
+//Table Generator
+    combo = combo+`<tr>
+    <th scope="row">`+(i+1)+`</th>
+    <td>`+auxC[i].comboB+`</td>
+    </tr>`}
 
+}
+
+document.getElementById('combo_row').innerHTML = combo;
+document.querySelector('.tableh').style.display = 'block';
+//fim combo
 
 for(var i=0;i<data_aux.length;i++){
-  if(data_aux[0].score1 - 80 <= data_aux[i].score1){
+  if(data_aux[0].score1 - 60 <= data_aux[i].score1){
 //Table Generator
     results = results+`<tr>
     <th scope="row">`+(i+1)+`</th>
@@ -202,51 +260,39 @@ for(var i=0;i<data_aux.length;i++){
     </tr>`
   }
 }
-
 document.getElementById('result_row').innerHTML = results;
-document.querySelector('.tableh').style.display = 'block';
+document.querySelector('.tablec').style.display = 'block';
+
+
+function getInputVal(id){
+  return document.getElementById(id).value;
 }
+  var client_name = getInputVal('client_name');
+  var client_email = getInputVal('client_email');
+  var client_date = getInputVal('client_date');
 
-
-// function rangeshowup(checkboxElem) {
-// if (checkboxElem.checked == true){
-// //document.querySelector('.tableh').style.display = 'block';
-// $(checkboxElem).parent().find('rangeh').style.display = 'block';
-
-// Build 0.6 start
-
- // Getting form value
-  function getInputVal(id){
-    return document.getElementById(id).value;
+// Check for client in database
+  for (var i=0; i<email_cli.length; i++){
+    if(email_cli[i] == client_email){
+      client_aux = 1;
+    }
   }
-    var client_name = getInputVal('client_name');
-    var client_email = getInputVal('client_email');
-    var client_date = getInputVal('client_date');
+  console.log(client_aux);
 
-  // Check for client in database
-    for (var i=0; i<email_cli.length; i++){
-      if(email_cli[i] == client_email){
-        client_aux = 1;
-      }
-    }
-    console.log(client_aux);
+// Save new client in database
+  if (client_aux != 1){
+  saveClient(client_name, client_email, client_date)
 
-  // Save new client in database
-    if (client_aux != 1){
-    saveClient(client_name, client_email, client_date)
-
-    function saveClient (client_name, client_email, client_date){
-      var newclientRef = clientRef.push();
-      newclientRef.set({
-        name:client_name,
-        email:client_email,
-        date:client_date,
-      });
-    }
-    client_aux = 1;
-    }
-  // Build 0.6 end
-
+  function saveClient (client_name, client_email, client_date){
+    var newclientRef = clientRef.push();
+    newclientRef.set({
+      name:client_name,
+      email:client_email,
+      date:client_date,
+    });
+  }
+  client_aux = 1;
+  }
   }
   )
 $('.custom-control-input').change(function() {
@@ -260,3 +306,16 @@ $('.custom-control-input').change(function() {
   }
 }
 )
+
+
+// function rangeshowup(checkboxElem) {
+// if (checkboxElem.checked == true){
+// //document.querySelector('.tableh').style.display = 'block';
+// $(checkboxElem).parent().find('rangeh').style.display = 'block';
+
+// }
+// else {
+//   //document.querySelector('.rangeh').style.display = 'none';
+//   $(checkboxElem).parent().find('rangeh').style.display = 'none';
+// }
+// }

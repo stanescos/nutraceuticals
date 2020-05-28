@@ -113,18 +113,12 @@ margin-bottom: 10px;
 display: none;
   }  
 
-  .badalert{
-    text-align: center;
-    padding: 10px;
-    background: #8B0000;
-    color: white;
-    margin-bottom: 10px;
-    display: none;
-      }  
-
 .tableh{
 display: none;
 }
+.tablec{
+  display: none;
+  }
 .shadowbox{
 box-shadow: 0 0 20px 0 rgba(72,94,116,0.7);
 }
@@ -146,4 +140,17 @@ box-shadow: 0 0 20px 0 rgba(72,94,116,0.7);
     .company-info h3, .company-info ul, .brand{
       text-align: left;
     }
+  }
+  .showEdit {
+    float: right;
+    background: #c9e6ff;
+    border: 0;
+    margin-left: 10px;
+    text-transform: uppercase;
+  }
+  .showEdit:hover {
+    background: #92bde7;
+    color: #fff;
+    outline: 0;
+    transition: background-color 0.5s ease-out;
   }
