@@ -16,7 +16,7 @@ var firebaseConfig = {
   // Reference product collection
 var productRef = firebase.database().ref('products');
 // Reference client collection
-var clientRef = firebase.database().ref('clients')
+var clientRef = firebase.database().ref('clients');
  // Reference combo collection
 var comboRef = firebase.database().ref('combo');
 
@@ -108,8 +108,6 @@ function gotDataCli(data) {
     comboS = comboA[i].split(", ");
     comboR.push(comboS);
   }
-
-  //console.log(comboR);
 }
 //combo
 
@@ -137,21 +135,28 @@ function errData(err) {
   } else {
       data[dataArray[i].name] = dataArray[i].value;
   }
-}
+  }
 
-//source
-  //asource = sourceR[n];
-  if (data.client_allergy != null){
+//corrigindo bugzada
+for(var p=0;p<sourceR.length;p++){
+  var asource = sourceR[p];
+data_aux[p].score1 = 0;
+}
+//
+
+//Allergy
+
+if (data.client_allergy != null){
   for(var p=0;p<sourceR.length;p++){
     var asource = sourceR[p];
     for(var x=0;x<asource.length;x++){
    for(var o=0; o <= data.client_allergy.length-1 ;o++){ 
     if(asource[x] == data.client_allergy[o]){
     data_aux[p].score1 = -1;
-   }//for client allergy
-  }//for asource
-}
-}
+  }
+  }
+  }
+  }
   }
 
 if (data.client_benefits != null){
@@ -164,10 +169,10 @@ for(var j=0; j <= data.client_benefits.length ;j++){
     if(main_evi[i] == 'Very High' || data.rclient_benefits[j] == 5){
     data_aux[i].score1 += 20 * (data.rclient_benefits[j]);
     }
-    else if (main_evi[i] == 'High'){
+    else if (main_evi[i] == 'High' && (data.revidence == 1 || data.revidence == 2)){
       data_aux[i].score1 += 15 * (data.rclient_benefits[j]);
     }
-    else if (main_evi[i] == 'Medium'){
+    else if (main_evi[i] == 'Medium' && data.revidence == 1){
       data_aux[i].score1 += 10 * (data.rclient_benefits[j]);
     }
     data_aux[i].outcome1 = main_out[i] + ' | ' + data_aux[i].outcome1;
@@ -176,10 +181,10 @@ for(var j=0; j <= data.client_benefits.length ;j++){
     if(sec_evi[i] == 'Very High' || data.rclient_benefits[j] == 5){
       data_aux[i].score1 += 18 * (data.rclient_benefits[j]);
       }
-      else if (sec_evi[i] == 'High'){
+      else if (sec_evi[i] == 'High' && (data.revidence == 1 || data.revidence == 2)){
         data_aux[i].score1 += 13 * (data.rclient_benefits[j]);
       }
-      else if (sec_evi[i] == 'Medium'){
+      else if (sec_evi[i] == 'Medium' && data.revidence == 1){
         data_aux[i].score1 += 8 * (data.rclient_benefits[j]);
       }
       data_aux[i].outcome1 = sec_out[i] + ' | ' + data_aux[i].outcome1;
@@ -188,10 +193,10 @@ for(var j=0; j <= data.client_benefits.length ;j++){
         if(thi_evi[i] == 'Very High' || data.rclient_benefits[j] == 5){
           data_aux[i].score1 += 16 * (data.rclient_benefits[j]);
           }
-          else if (thi_evi[i] == 'High'){
+          else if (thi_evi[i] == 'High' && (data.revidence == 1 || data.revidence == 2)){
             data_aux[i].score1 += 11 * (data.rclient_benefits[j]);
           }
-          else if (thi_evi[i] == 'Medium'){
+          else if (thi_evi[i] == 'Medium' && data.revidence == 1){
             data_aux[i].score1 += 6 * (data.rclient_benefits[j]);
           }
           data_aux[i].outcome1 = thi_out[i] + ' | ' + data_aux[i].outcome1;
@@ -211,7 +216,8 @@ for(var j=0; j <= data.client_benefits.length ;j++){
         }     
       }
     }
-  } 
+  }
+
 //combo
 if(auxC[0].score2 == 0){
 for(var i=0; i<= comboR.length-1; i++){
@@ -225,17 +231,18 @@ for(var i=0; i<= comboR.length-1; i++){
   }
 }
 }
-
 //combo
+
+
 auxC.sort(function(current, next){return next.score2 - current.score2});
+
 console.log(auxC);
-//console.log(comboR[1]);
 console.log(data_aux);
 data_aux.sort(function(current, next){return next.score1 - current.score1});
 
 //inicio combo
 for(var i=0;i<auxC.length;i++){
-  if(auxC[i].score2 !=0){
+  if(auxC[i].score2 > 0){
 //Table Generator
     combo = combo+`<tr>
     <th scope="row">`+(i+1)+`</th>
@@ -249,7 +256,7 @@ document.querySelector('.tableh').style.display = 'block';
 //fim combo
 
 for(var i=0;i<data_aux.length;i++){
-  if(data_aux[0].score1 - 60 <= data_aux[i].score1){
+  if(data_aux[0].score1 - data_aux[i].score1 <= data_aux[0].score1 / 2){
 //Table Generator
     results = results+`<tr>
     <th scope="row">`+(i+1)+`</th>
@@ -306,16 +313,3 @@ $('.custom-control-input').change(function() {
   }
 }
 )
-
-
-// function rangeshowup(checkboxElem) {
-// if (checkboxElem.checked == true){
-// //document.querySelector('.tableh').style.display = 'block';
-// $(checkboxElem).parent().find('rangeh').style.display = 'block';
-
-// }
-// else {
-//   //document.querySelector('.rangeh').style.display = 'none';
-//   $(checkboxElem).parent().find('rangeh').style.display = 'none';
-// }
-// }

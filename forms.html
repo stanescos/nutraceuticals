@@ -212,8 +212,8 @@
 <br><br>
 
 <!--Allergy-->
-<label for="formGroupExampleInput">Allergy</label><br>  
-<div class="row text-left">
+<label for="formGroupExampleInput">Allergy</label>
+<div class="row text-left mt-1">
 <div class="col-sm-4">
 <div class="custom-control custom-checkbox">
   <input class="custom-control-input" type="checkbox" name="client_allergy" value="Walnuts" id="client_allergy1">
@@ -245,10 +245,19 @@
 </div>
 </div>
 </div>
+<div class="row text-center mt-5">
+<div class="col-sm-6">
+  <label for="custom-control-label">Price</label><br>
+<span class=""><label for="custom-control-input">$$</label> <input type="range" class="custom-range col-sm-3" value="2"  min="1" max="3" id="rprice" name="rprice"> <label>$$$$</label></span>
+</div>
+<div class="col-sm-6">
+  <label for="custom-control-label">Evidence</label><br>
+<span class=""><label for="custom-control-input">Medium</label> <input type="range" class="custom-range col-sm-3" value="2"  min="1" max="3" id="revidence" name="revidence"> <label>Very High</label></span>
+</div>
+</div>
 
     <!-- Sign in button -->
-    <br><br>
-    <button class="btn btn-info" type="submit">Submit</button>
+    <button class="btn btn-info mt-3" type="submit">Submit</button>
     </div>
 
 </form>
@@ -256,13 +265,13 @@
 <!-- -->
 <div class="tablec mt-1">
 <div class="container insert">
-  <h4>Suggested combos:</h4>
+  <h4>Suggested compound substances:</h4>
 <br>
   <table class="table table-hover" id="result_table">
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Combo</th>
+        <th scope="col">compound substances</th>
       </tr>
     </thead>
     <tbody id="combo_row">
@@ -299,7 +308,7 @@
 
 
 
-<h4 class="text-right mt-3">Build 0.5</h4>
+<h4 class="text-right mt-3">Build 0.8</h4>
 </div>
 
 
