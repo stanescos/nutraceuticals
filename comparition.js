@@ -137,15 +137,13 @@ function errData(err) {
   }
   }
 
-//corrigindo bugzada
+
 for(var p=0;p<sourceR.length;p++){
   var asource = sourceR[p];
 data_aux[p].score1 = 0;
 }
-//
 
 //Allergy
-
 if (data.client_allergy != null){
   for(var p=0;p<sourceR.length;p++){
     var asource = sourceR[p];
@@ -158,6 +156,34 @@ if (data.client_allergy != null){
   }
   }
   }
+  //End Allergy
+
+//diet
+if (data.client_diet != null){
+  for(var p=0;p<sourceR.length;p++){
+    var asource = sourceR[p];
+    for(var x=0;x<asource.length;x++){ 
+    if(asource[x] == "Eggs" || asource[x] == "Meat" || asource[x] == "Fish" || asource[x] == "Milk"){
+    data_aux[p].score1 = -1;
+  }
+  }
+  }
+  }
+//end diet  
+
+// Price
+  for (var i=0; i<name_pro.length; i++){
+if (data.rprice == 1 && (price[i] == '$$' || price[i] == '$$$'|| price[i] == '$$$$')) {
+data_aux[i].score1 = -1;
+}
+else if (data.rprice == 2 && (price[i] == '$$$' || price[i] == '$$$$')){
+  data_aux[i].score1 = -1;
+}
+else if (data.rprice == 3 && price[i] == '$$$$'){
+  data_aux[i].score1 = -1;
+}
+  };
+// End price  
 
 if (data.client_benefits != null){
 for (var i=0; i<main_out.length || i<sec_out.length || i<thi_out.length || i<fou_out.length;i++){
@@ -218,7 +244,7 @@ for(var j=0; j <= data.client_benefits.length ;j++){
     }
   }
 
-//combo
+//Combo
 if(auxC[0].score2 == 0){
 for(var i=0; i<= comboR.length-1; i++){
   var auxi = comboR[i];
@@ -231,7 +257,7 @@ for(var i=0; i<= comboR.length-1; i++){
   }
 }
 }
-//combo
+//End combo
 
 
 auxC.sort(function(current, next){return next.score2 - current.score2});
@@ -240,7 +266,7 @@ console.log(auxC);
 console.log(data_aux);
 data_aux.sort(function(current, next){return next.score1 - current.score1});
 
-//inicio combo
+//Combo Table Generator
 for(var i=0;i<auxC.length;i++){
   if(auxC[i].score2 > 0){
 //Table Generator
@@ -253,11 +279,14 @@ for(var i=0;i<auxC.length;i++){
 
 document.getElementById('combo_row').innerHTML = combo;
 document.querySelector('.tableh').style.display = 'block';
-//fim combo
+//End combo table
+
+
+
 
 for(var i=0;i<data_aux.length;i++){
-  if(data_aux[0].score1 - data_aux[i].score1 <= data_aux[0].score1 / 2){
-//Table Generator
+  if(data_aux[0].score1 - data_aux[i].score1 <= data_aux[0].score1 / 2 && data_aux[0].score1 > 0){
+//Product Table Generator
     results = results+`<tr>
     <th scope="row">`+(i+1)+`</th>
     <td>`+data_aux[i].name1+`</td>
@@ -269,7 +298,7 @@ for(var i=0;i<data_aux.length;i++){
 }
 document.getElementById('result_row').innerHTML = results;
 document.querySelector('.tablec').style.display = 'block';
-
+//End product table
 
 function getInputVal(id){
   return document.getElementById(id).value;

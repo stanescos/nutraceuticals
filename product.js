@@ -27,13 +27,12 @@ var firebaseConfig = {
     var knowas = products[k].knowas;
 
     // Table Generator
-    //0.0.6: Add edit icon
     product_list = product_list+`<tr>
     <th scope="row" id=id>`+(i+1)+`</th>
     <td>`+name+`</td>
     <td>`+knowas+`<button type="button" data-toggle="button" aria-pressed="false" autocomplete="off" class="btn btn-sm showEdit" id=`+(i+1)+`>Edit<i class="fa fa-edit"></i></button></td>
     </tr>`
-    //0.0.6: End of add
+
   }
 document.getElementById('product_row').innerHTML = product_list;
 }
@@ -41,7 +40,7 @@ document.getElementById('product_row').innerHTML = product_list;
 function showtable(){
   document.querySelector('.tableh').style.display = 'block';
   
-  //0.0.6: Show the selected object
+
   $('.showEdit').click(function () {
     var id = $(this).attr('id');
     productRef.on('value', function (data){
@@ -88,7 +87,6 @@ function showtable(){
       $("html, body").scrollTop(0);
     }, errData);
   });
-  //0.0.6
 }
 
 
@@ -167,9 +165,9 @@ function errData(err) {
   
   // Save product to firebase
   function saveProduct(name, knowas, origin, category, uses, source, type, price, main_out, main_evi, sec_out, sec_evi, thi_out, thi_evi, fou_out, fou_evi, toxicity, side_efe, warn_fpw, age_range, comp1, comp1_pn, comp1_evi, comp2, comp2_pn, comp2_evi, main_admin_form, owtci, main_dosage, main_dose, sec_dosage, sec_dose, thi_dosage, thi_dose, fou_dosage, fou_dose, score){
-    //0.0.6: Added if
+
     if($('.submit').attr('id') == ''){
-    //End
+
       var newProductRef = productRef.push();
       newProductRef.set({
         name:name,
@@ -210,7 +208,6 @@ function errData(err) {
         score:score
       });
     }
-    //0.0.6
     else{
       productRef.child($('.submit').attr('id')).update({
         name:name,
@@ -252,7 +249,7 @@ function errData(err) {
       });
       $('.submit').attr('id','');
     }
-    //End of 0.0.6
+    location.reload();
   }
 
   

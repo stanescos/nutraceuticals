@@ -27,9 +27,10 @@ var firebaseConfig = {
     var comboC = combo[k].combo;
 
     // Table Generator
+    //add edit button
     combo_list = combo_list+`<tr>
     <th scope="row">`+(i+1)+`</th>
-    <td>`+comboC+`</td>
+    <td>`+comboC+`<button type="button" data-toggle="button" aria-pressed="false" autocomplete="off" class="btn btn-sm showEdit" id=`+(i+1)+`>Edit <i class="fa fa-edit"></i></button></td>
     </tr>`
   }
 document.getElementById('combo_row').innerHTML = combo_list;
@@ -37,6 +38,21 @@ document.getElementById('combo_row').innerHTML = combo_list;
 
 function showtable(){
   document.querySelector('.tableh').style.display = 'block';
+
+  $('.showEdit').click(function () {
+    var id = $(this).attr('id');
+    comboRef.on('value', function(data) {
+      var combos = data.val();
+      var keys = Object.keys(combos);
+      var k = keys[id-1];
+      var result = combos[k].combo.split(', ');
+      $('#product1').val(result[0]);
+      $('#product2').val(result[1]);
+      $('#product3').val(result[2]);
+      $('#product4').val(result[3]);
+      $('.submit').attr('id',k);
+    }, errData);
+  });
 }
 
 
@@ -92,10 +108,18 @@ function errData(err) {
   
   // Save product to firebase
   function saveProduct(comboP){
-    var newComboRef = comboRef.push();
-    newComboRef.set({
-      combo:comboP
-    });
+    if($('.submit').attr('id') == ''){
+      var newComboRef = comboRef.push();
+      newComboRef.set({
+        combo:comboP
+      });
+    }
+    else {
+      comboRef.child($('.submit').attr('id')).update({
+        combo:comboP
+      });
+      $('.submit').attr('id','');
+      location.reload();
+    }
   }
-
-  
+  //end
