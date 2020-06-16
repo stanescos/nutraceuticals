@@ -56,13 +56,17 @@ function showtable(){
       $('#type').val(products[k].type) 
       $('#price').val(products[k].price) 
       $('#main_out').val(products[k].main_out) 
-      $('#main_evi').val(products[k].main_evy) 
+      $('#main_evi').val(products[k].main_evi) 
+      $('#main_eff').val(products[k].main_eff) 
       $('#sec_out').val(products[k].sec_out) 
       $('#sec_evi').val(products[k].sec_evi) 
+      $('#sec_eff').val(products[k].sec_eff) 
       $('#thi_out').val(products[k].thi_out) 
       $('#thi_evi').val(products[k].thi_evi) 
+      $('#thi_eff').val(products[k].thi_eff) 
       $('#fou_out').val(products[k].fou_out) 
       $('#fou_evi').val(products[k].fou_evi) 
+      $('#fou_eff').val(products[k].fou_eff) 
       $('#toxicity').val(products[k].toxicity) 
       $('#side_efe').val(products[k].side_efe) 
       $('#warn_fpw').val(products[k].warn_fpw) 
@@ -113,12 +117,16 @@ function errData(err) {
     var price = getInputVal('price');
     var main_out = getInputVal('main_out');
     var main_evi = getInputVal('main_evi');
+    var main_eff = getInputVal('main_eff');
     var sec_out = getInputVal('sec_out');
     var sec_evi = getInputVal('sec_evi');
+    var sec_eff = getInputVal('sec_eff');
     var thi_out = getInputVal('thi_out');
     var thi_evi = getInputVal('thi_evi');
+    var thi_eff = getInputVal('thi_eff');
     var fou_out = getInputVal('fou_out');
     var fou_evi = getInputVal('fou_evi');
+    var fou_eff = getInputVal('fou_eff');
     var toxicity = getInputVal('toxicity');
     var side_efe = getInputVal('side_efe');
     var warn_fpw = getInputVal('warn_fpw');
@@ -144,7 +152,7 @@ function errData(err) {
     
   
     // Save product
-    saveProduct(name, knowas, origin, category, uses, source, type, price, main_out, main_evi, sec_out, sec_evi, thi_out, thi_evi, fou_out, fou_evi, toxicity, side_efe, warn_fpw, age_range, comp1, comp1_pn, comp1_evi, comp2, comp2_pn, comp2_evi, main_admin_form, owtci, main_dosage, main_dose, sec_dosage, sec_dose, thi_dosage, thi_dose, fou_dosage, fou_dose, score);
+    saveProduct(name, knowas, origin, category, uses, source, type, price, main_out, main_evi, main_eff, sec_out, sec_evi, sec_eff, thi_out, thi_evi, thi_eff, fou_out, fou_evi, fou_eff, toxicity, side_efe, warn_fpw, age_range, comp1, comp1_pn, comp1_evi, comp2, comp2_pn, comp2_evi, main_admin_form, owtci, main_dosage, main_dose, sec_dosage, sec_dose, thi_dosage, thi_dose, fou_dosage, fou_dose, score);
   
     // Show alert
     document.querySelector('.alert').style.display = 'block';
@@ -164,7 +172,7 @@ function errData(err) {
   }
   
   // Save product to firebase
-  function saveProduct(name, knowas, origin, category, uses, source, type, price, main_out, main_evi, sec_out, sec_evi, thi_out, thi_evi, fou_out, fou_evi, toxicity, side_efe, warn_fpw, age_range, comp1, comp1_pn, comp1_evi, comp2, comp2_pn, comp2_evi, main_admin_form, owtci, main_dosage, main_dose, sec_dosage, sec_dose, thi_dosage, thi_dose, fou_dosage, fou_dose, score){
+  function saveProduct(name, knowas, origin, category, uses, source, type, price, main_out, main_evi, main_eff, sec_out, sec_evi, sec_eff, thi_out, thi_evi, thi_eff, fou_out, fou_evi, fou_eff, toxicity, side_efe, warn_fpw, age_range, comp1, comp1_pn, comp1_evi, comp2, comp2_pn, comp2_evi, main_admin_form, owtci, main_dosage, main_dose, sec_dosage, sec_dose, thi_dosage, thi_dose, fou_dosage, fou_dose, score){
 
     if($('.submit').attr('id') == ''){
 
@@ -180,11 +188,16 @@ function errData(err) {
         price:price,
         main_out:main_out,
         main_evi:main_evi,
+        main_eff:main_eff,
         sec_out:sec_out,
         sec_evi:sec_evi,
+        sec_eff:sec_eff,
         thi_out:thi_out,
         thi_evi:thi_evi,
+        thi_eff:thi_eff,
         fou_out:fou_out,
+        fou_evi:fou_evi,
+        fou_eff:fou_eff,
         toxicity:toxicity,
         side_efe:side_efe,
         warn_fpw:warn_fpw,
@@ -220,11 +233,16 @@ function errData(err) {
         price:price,
         main_out:main_out,
         main_evi:main_evi,
+        main_eff:main_eff,
         sec_out:sec_out,
         sec_evi:sec_evi,
+        sec_eff:sec_eff,
         thi_out:thi_out,
         thi_evi:thi_evi,
+        thi_eff:thi_eff,
         fou_out:fou_out,
+        fou_evi:fou_evi,
+        fou_eff:fou_eff,
         toxicity:toxicity,
         side_efe:side_efe,
         warn_fpw:warn_fpw,

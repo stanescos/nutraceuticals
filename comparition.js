@@ -43,6 +43,10 @@ var main_evi = [];
 var sec_evi = [];
 var thi_evi = [];
 var fou_evi = [];
+var main_eff = [];
+var sec_eff = [];
+var thi_eff = [];
+var fou_eff = [];
 
 
 // Read clients from database
@@ -70,12 +74,16 @@ function gotDataCli(data) {
      origin_pro[i] = products[k].origin;
      main_out[i] = products[k].main_out;
      main_evi[i] = products[k].main_evi;
-     sec_out[i]= products[k].sec_out;
+     main_eff[i] = products[k].main_eff;
+     sec_out[i] = products[k].sec_out;
      sec_evi[i] = products[k].sec_evi;
+     sec_eff[i] = products[k].sec_eff;
      thi_out[i] = products[k].thi_out;
      thi_evi[i] = products[k].thi_evi;
+     thi_eff[i] = products[k].thi_eff;
      fou_out[i] = products[k].fou_out;
      fou_evi[i] = products[k].fou_evi;
+     fou_eff[i] = products[k].fou_eff;
      price[i] = products[k].price;
      source[i] = products[k].source;
      var name1 = name_pro[i];
@@ -114,7 +122,7 @@ function gotDataCli(data) {
 function errData(err) {
   console.log(err);
 }
-
+console.log(main_eff);
   
   // Listen for form submit
   $('form').submit(function(e){
@@ -158,7 +166,7 @@ if (data.client_allergy != null){
   }
   //End Allergy
 
-//diet
+//Vegan
 if (data.client_diet != null){
   for(var p=0;p<sourceR.length;p++){
     var asource = sourceR[p];
@@ -169,7 +177,7 @@ if (data.client_diet != null){
   }
   }
   }
-//end diet  
+//end vegan  
 
 // Price
   for (var i=0; i<name_pro.length; i++){
@@ -191,7 +199,8 @@ for (var i=0; i<main_out.length || i<sec_out.length || i<thi_out.length || i<fou
   data_aux[i].score1 = 0;
   data_aux[i].outcome1 = '';
 for(var j=0; j <= data.client_benefits.length ;j++){
-  if(main_out[i] == data.client_benefits[j]){
+
+  if(main_out[i] == data.client_benefits[j] && data.refficiency <= main_eff[i]){
     if(main_evi[i] == 'Very High' || data.rclient_benefits[j] == 5){
     data_aux[i].score1 += 20 * (data.rclient_benefits[j]);
     }
@@ -203,7 +212,7 @@ for(var j=0; j <= data.client_benefits.length ;j++){
     }
     data_aux[i].outcome1 = main_out[i] + ' | ' + data_aux[i].outcome1;
     }
-  if(sec_out[i] == data.client_benefits[j]){
+  if(sec_out[i] == data.client_benefits[j] && data.refficiency <= sec_eff[i]){
     if(sec_evi[i] == 'Very High' || data.rclient_benefits[j] == 5){
       data_aux[i].score1 += 18 * (data.rclient_benefits[j]);
       }
@@ -215,7 +224,7 @@ for(var j=0; j <= data.client_benefits.length ;j++){
       }
       data_aux[i].outcome1 = sec_out[i] + ' | ' + data_aux[i].outcome1;
       }
-       if(thi_out[i] == data.client_benefits[j]){
+       if(thi_out[i] == data.client_benefits[j] && data.refficiency <= thi_eff[i]){
         if(thi_evi[i] == 'Very High' || data.rclient_benefits[j] == 5){
           data_aux[i].score1 += 16 * (data.rclient_benefits[j]);
           }
@@ -227,7 +236,7 @@ for(var j=0; j <= data.client_benefits.length ;j++){
           }
           data_aux[i].outcome1 = thi_out[i] + ' | ' + data_aux[i].outcome1;
           }
-       if(fou_out[i] == data.client_benefits[j]){
+       if(fou_out[i] == data.client_benefits[j]  && data.refficiency <= fou_eff[i]){
         if(fou_evi[i] == 'Very High' || data.rclient_benefits[j] == 5){
           data_aux[i].score1 += 14 * (data.rclient_benefits[j]);
           }
@@ -243,6 +252,8 @@ for(var j=0; j <= data.client_benefits.length ;j++){
       }
     }
   }
+  console.log(main_eff)
+  console.log(data.refficiency)
 
 //Combo
 if(auxC[0].score2 == 0){
