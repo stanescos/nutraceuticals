@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css"/>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="stylee.css">
     
     <title></title>
   </head>
@@ -16,10 +17,14 @@
     <div class="container">
     <h1 class="brand"><span>Nutraceuticals</span> Quiz</h1>
       <!-- Default form subscription -->
-<form class="insert text-center border border-light p-5 shadowbox" action="#!" id="quiz_form">
+<form class="insert text-center border border-light p-5 shadowbox" action="" id="quiz_form">
 
   <div class="form-group">
+    <h1></h1> <!-- NOVA PARTE AQUI -->
     <!-- Name -->
+    <br><br>
+    <div class="tab">
+
     <div class="row">
       <div class="col-sm-5">
     <label for="formGroupExampleInput">Name</label>
@@ -40,8 +45,10 @@
   </div>
   </div>
 <br>
+</div>
   <!-- Beneficios -->
-  <label for="formGroupExampleInput">Benefits</label><br>
+  <div class="tab"><div class="w-100 p-3 h-50 d-inline-block" style="background-color: #eee;">What benefits are you looking for?</div>
+  <label for="formGroupExampleInput"></label><br>
   <div class="row text-left">
     <div class="col-sm-4">
       <div class="custom-control custom-checkbox">
@@ -210,9 +217,11 @@
   </div>
 
 <br><br>
+</div>
 
 <!--Allergy-->
-<label for="formGroupExampleInput">Allergy</label>
+<div class="tab"><div class="w-100 p-3 h-50 d-inline-block" style="background-color: #eee;">Are you allergic to any of the sources listed below?</div>
+<label for="formGroupExampleInput"></label>
 <div class="row text-left mt-1">
 <div class="col-sm-4">
 <div class="custom-control custom-checkbox">
@@ -245,39 +254,61 @@
 </div>
 </div>
 </div>
-
-<br><br>
+</div>
 
 <!--Vegan-->
-<label for="formGroupExampleInput">Diets</label>
-<div class="row text-left mt-1">
-<div class="col-sm-4">
+<div class="tab"><div class="w-100 p-3 h-25 d-inline-block" style="background-color: #eee;">Specific diets:</div>
+<label for="formGroupExampleInput"></label>
+<div class="row text-center mt-1">
+<div class="col-sm-1">
 <div class="custom-control custom-checkbox">
   <input class="custom-control-input" type="checkbox" name="client_diet" value="Vegan" id="client_diet1">
-  <label class="custom-control-label" for="client_diet1">Vegan</label>
+  <label class="custom-control-label align-text-top" for="client_diet1">Vegan</label>
 </div>
 </div>
 </div>
 
-
+<!-- -->
+<div class="w-100 p-3 h-25 d-inline-block mt-5" style="background-color: #eee;">Do you have any preference regarding the price or evidence of the products?</div>
 <div class="row text-center mt-5">
-<div class="col-sm-4">
-  <label for="custom-control-label">Price</label><br>
-<span class=""><label for="custom-control-input">$</label> <input type="range" class="custom-range col-sm-3" value="4"  min="1" max="4" id="rprice" name="rprice"> <label>$$$$</label></span>
-</div>
-<div class="col-sm-4">
-  <label for="custom-control-label">Evidence</label><br>
-<span class=""><label for="custom-control-input">Medium</label> <input type="range" class="custom-range col-sm-3" value="2"  min="1" max="3" id="revidence" name="revidence"> <label>Very High</label></span>
-</div>
-<div class="col-sm-4">
-  <label for="custom-control-label">Efficiency</label><br>
-<span class=""><label for="custom-control-input">★★</label> <input type="range" class="custom-range col-sm-3" value="2"  min="2" max="5" id="refficiency" name="refficiency"> <label>★★★★★</label></span>
-</div>
+  <div class="col-sm-4">
+    <label for="custom-control-label">Price</label><br>
+  <span class=""><label for="custom-control-input">$</label> <input type="range" class="custom-range col-sm-3" value="4"  min="1" max="4" id="rprice" name="rprice"> <label>$$$$</label></span>
+  </div>
+  <div class="col-sm-4">
+    <label for="custom-control-label">Evidence</label><br>
+  <span class=""><label for="custom-control-input">Medium</label> <input type="range" class="custom-range col-sm-3" value="2"  min="1" max="3" id="revidence" name="revidence"> <label>Very High</label></span>
+  </div>
+  <div class="col-sm-4">
+    <label for="custom-control-label">Efficiency</label><br>
+  <span class=""><label for="custom-control-input">★★</label> <input type="range" class="custom-range col-sm-3" value="2"  min="2" max="5" id="refficiency" name="refficiency"> <label>★★★★★</label></span>
+  </div>
+  </div>
+<!-- Sign in button -->
+
+   <!-- <button class="btn btn-info mt-3" type="submit" id="submitBtn">Submit</button> -->
+
+    </div>
 </div>
 
-    <!-- Sign in button -->
-    <button class="btn btn-info mt-3" type="submit">Submit</button>
-    </div>
+
+ <!-- AAAAAAAAAAAAAAAAAAAA -->
+<div style="overflow:auto;">
+  <div style="float:right;">
+    <button type="button" class="btn btn-primary" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+    <button type="button" class="btn btn-primary" id="nextBtn" onclick="nextPrev(1)">Next</button>
+    <a href="#aaa"><button class="btn btn-primary" type="submit" id="submitBtn" onclick="nextPrev(0)">Submit</button></a>
+  </div>
+</div>
+
+<!-- Circles which indicates the steps of the form: -->
+<div style="text-align:center;margin-top:40px;">
+  <span class="step"></span>
+  <span class="step"></span>
+  <span class="step"></span>
+  <span class="step"></span>
+</div>
+ <!-- AAAAAAAAAAAAAAAA -->
 
 </form>
 
@@ -304,7 +335,7 @@
 <!-- -->
 
 <div class="tableh mt-1">
-<div class="container insert">
+<div class="container insert" id="aaa">
   <h4>Suggested products</h4>
 <br>
   <table class="table table-hover" id="result_table">
@@ -325,10 +356,8 @@
 </div>
 </div>
 
+<h4 class="text-right mt-3">Build 0.8</h4>
 
-
-<h4 class="text-right mt-3">Build 0.9</h4>
-</div>
 
 
 
@@ -345,5 +374,6 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="comparition.js"></script>
+    <script src="jss.js"></script>
   </body>
 </html>
