@@ -19,8 +19,8 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           <a class="nav-item nav-link" href="https://stanescos.github.io/nutraceuticals/index">Home</a>
-          <a class="nav-item nav-link" href="https://stanescos.github.io/nutraceuticals/product">Product</a>
-          <a class="nav-item nav-link active" href="https://stanescos.github.io/nutraceuticals/combo">Combo <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link active" href="https://stanescos.github.io/nutraceuticals/product">Product <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link" href="https://stanescos.github.io/nutraceuticals/combo">Combo</a>
           <a class="nav-item nav-link" href="https://stanescos.github.io/nutraceuticals/forms">Form</a>
         </div>
       </div>
@@ -44,34 +44,36 @@
     <h3>Combo</h3>
     <form id="combo_form">
 <p>
-            <label>Product 1</label>
+            <label name="Product 1">Product 1</label>
             <input type="text" name="product1" id="product1">
           </p>
           <p>
-            <label>Product 2</label>
+            <label name="Product 2">Product 2</label>
             <input type="text" name="product2" id="product2">
           </p>
           <p>
-            <label>Product 3</label>
+            <label name="Product 3">Product 3</label>
             <input type="text" name="product3" id="product3">
           </p>
           <p>
-            <label>Product 4</label>
+            <label name="Product 4">Product 4</label>
             <input type="text" name="product4" id="product4">
           </p>
 
         
         <p class="full">
 
-            <button type="submit" class="submit">Submit</button>
+            <button type="submit" class="submit" id="submit">Submit</button>
+            <!-- <a href="#m1"class="edit" rel="modal:open"><button style="margin-top: 10px;">Edit Form</button></a> -->
+            <button type="button" data-toggle="modal" data-target="#exampleModal" style="margin-top: 10px;">Edit Form</button>
           </p>
     </form>
     </div>
   </div>
 
-    <div class="container insert shadowbox mt-1">
+    <div class="container insert shadowbox mt-1 animated bounceInLeft">
         <button type="button" class="resultbutton" data-toggle="button" aria-pressed="false" autocomplete="off" onclick="showtable()" id="showtable">Combos</button>
-
+      
     <br>
       <table class="table table-hover tableh mt-4" id="combo_table">
         <thead>
@@ -89,7 +91,56 @@
     </div>
 
 </div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Form Fields</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <span name="product1">Product 1</span>
+        <input type="text" style="display: none;">
+        <div class="btnCollection">
+          <button type="button" class="btn btn-success saveEdit" title="Save Changes" style="display: none;"><i class="fa fa-check"></i></button>
+          <button type="button" class="btn btn-primary editField" title="Edit Field"><i class="fa fa-edit"></i></button>
+        </div>
+        <hr>
+        <span name="product2">Product 2</span>
+        <input type="text" style="display: none;">
+        <div class="btnCollection">
+          <button type="button" class="btn btn-success saveEdit" title="Save Changes" style="display: none;"><i class="fa fa-check"></i></button>
+          <button type="button" class="btn btn-primary editField" title="Edit Field"><i class="fa fa-edit"></i></button>
+        </div>
+        <hr>
+        <span name="product3">Product 3</span>
+        <input type="text" style="display: none;">
+        <div class="btnCollection">
+          <button type="button" class="btn btn-success saveEdit" title="Save Changes" style="display: none;"><i class="fa fa-check"></i></button>
+          <button type="button" class="btn btn-primary editField" title="Edit Field"><i class="fa fa-edit"></i></button>
+          <button type="button" class="btn btn-danger deleteField" title="Delete Field"><i class="fa fa-trash"></i></button>
+        </div>
+        <hr>
+        <span name="product4">Product 4</span>
+        <input type="text" style="display: none;">
+        <div class="btnCollection">
+          <button type="button" class="btn btn-success saveEdit" title="Save Changes" style="display: none;"><i class="fa fa-check"></i></button>
+          <button type="button" class="btn btn-primary editField" title="Edit Field"><i class="fa fa-edit"></i></button>
+          <button type="button" class="btn btn-danger deleteField" title="Delete Field"><i class="fa fa-trash"></i></button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success addField" title="Add Field"><i class="fa fa-plus"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-analytics.js"></script>

@@ -15,7 +15,9 @@ var firebaseConfig = {
   // Reference product collection
   var comboRef = firebase.database().ref('combo');
 
-
+  var form = ["product1", "product2", "product3", "product4"];
+  var count = 4;
+  console.log(form);
 
  comboRef.on('value', gotData, errData);
  function gotData(data) {
@@ -50,6 +52,16 @@ function showtable(){
       $('#product2').val(result[1]);
       $('#product3').val(result[2]);
       $('#product4').val(result[3]);
+      if(result.length > 4) {
+        for(let i=4; i < result.length; i++) {
+          count++;
+          $('<p> <label name="Product ' + (i+1) + '"> Product ' + (i+1) + '</label> <input type="text" name="product' + (i+1) +'" id="product' + (i+1) + '"> </p>').insertBefore('p.full');
+          $('.modal-body').append('<hr> <span name="product'+ (i+1) +'">Product ' + (i+1) + '</span> <input type="text" style="display: none;"> <div class="btnCollection"> <button type="button" class="btn btn-success saveEdit" title="Save Changes" style="display: none;"><i class="fa fa-check"></i></button> <button type="button" class="btn btn-primary editField" title="Edit Field"><i class="fa fa-edit"></i></button> <button type="button" class="btn btn-danger deleteField" title="Delete Field"><i class="fa fa-trash"></i></button> </div>');
+          $('#product' + (i+1)).val(result[i]);
+          form.push("product" + count);
+          console.log(form);
+        }
+      }
       $('.submit').attr('id',k);
     }, errData);
   });
@@ -62,27 +74,20 @@ function errData(err) {
 }
 
   // Listen for form submit
-  document.getElementById('combo_form').addEventListener('submit', submitForm);
+  document.getElementById('submit').addEventListener('click', submitForm);
   // Submit form
   function submitForm(e){
     e.preventDefault();
-  
+    var array = [];
+    for(let i=0; i<form.length; i++) {
+      console.log(form[i]);
+      if($("#" + form[i]).val() !== "") {
+        array[i] = $("#" + form[i]).val();
+      }
+    }
+    console.log(array.join(", "));
     // Get values
-    var product1 = getInputVal('product1');
-    var product2 = getInputVal('product2');
-    var product3 = getInputVal('product3');
-    var product4 = getInputVal('product4');
-
-
-    var comboP = product1 + ", " + product2;
-
-    if(product3 != ""){
-      comboP = comboP + ", " + product3;
-    }
-
-   if(product4 != ""){
-      comboP = comboP + ", " + product3;
-    }
+    comboP = array.join(", ");
 
     
   
@@ -108,7 +113,8 @@ function errData(err) {
   
   // Save product to firebase
   function saveProduct(comboP){
-    if($('.submit').attr('id') == ''){
+    console.log($('.submit').attr('id'));
+    if($('.submit').attr('id') !== 'undefined'){
       var newComboRef = comboRef.push();
       newComboRef.set({
         combo:comboP
@@ -123,3 +129,45 @@ function errData(err) {
     }
   }
   //end
+  $(document).on("click", ".btnCollection .editField", function() {
+    console.log('clicked');
+    $(this).parent().prev().toggle();
+    $(this).parent().prev().val($(this).parent().prev().prev().text());
+    $(this).parent().prev().prev().toggle();
+    $(this).prev().toggle();
+  });
+
+  $(document).on("click", ".btnCollection .saveEdit", function() {
+    const text = $(this).parent().prev().prev().text();
+    $("label[name|='" + text + "']").text($(this).parent().prev().val());
+    $("label").attr("name", $(this).parent().prev().val());
+    console.log('clicked');
+    
+    $(this).parent().prev().prev().text($(this).parent().prev().val());
+    $(this).parent().prev().toggle();
+    $(this).parent().prev().prev().toggle();
+    $(this).toggle();
+  });
+
+  $(document).on("click", ".btnCollection .deleteField", function () {
+    const text = $(this).parent().prev().prev().text();
+    $("label[name|='" + text + "']").parent().remove();
+    const index = form.indexOf($(this).parent().prev().prev().attr('name'));
+    if (index > -1) {
+      form.splice(index, 1);
+    }
+    console.log(form);
+    $(this).parent().prev().prev().prev().remove();
+    $(this).parent().prev().prev().remove();
+    $(this).parent().prev().remove();
+    $(this).parent().next().remove();
+    $(this).parent().remove();
+  });
+
+  $('.modal-footer .addField').click(function () {
+    count++;
+    $('<p> <label name="Product ' + count + '"> Product ' + count + '</label> <input type="text" name="product' + count +'" id="product' + count + '"> </p>').insertBefore('p.full');
+    $('.modal-body').append('<hr> <span name="product'+count+'">Product ' + count + '</span> <input type="text" style="display: none;"> <div class="btnCollection"> <button type="button" class="btn btn-success saveEdit" title="Save Changes" style="display: none;"><i class="fa fa-check"></i></button> <button type="button" class="btn btn-primary editField" title="Edit Field"><i class="fa fa-edit"></i></button> <button type="button" class="btn btn-danger deleteField" title="Delete Field"><i class="fa fa-trash"></i></button> </div>');
+    form.push("product" + count);
+    console.log(form);
+  });
