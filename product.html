@@ -19,10 +19,8 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-item nav-link" href="https://stanescos.github.io/nutraceuticals/index">Home</a>
-          <a class="nav-item nav-link active" href="https://stanescos.github.io/nutraceuticals/product">Product <span class="sr-only">(current)</span></a>
-          <a class="nav-item nav-link" href="https://stanescos.github.io/nutraceuticals/combo">Combo</a>
-          <a class="nav-item nav-link" href="https://stanescos.github.io/nutraceuticals/forms">Form</a>
+          <a class="nav-item nav-link" href="./index.html">Home</a>
+          <a class="nav-item nav-link active" href="./product.html">Product <span class="sr-only">(current)</span></a>
         </div>
       </div>
     </nav>
@@ -61,8 +59,8 @@
             <input type="text" name="category" id="category">
           </p>
           <p>
-            <label>Uses</label>
-            <input type="text" name="uses" id="uses">
+            <label>History</label>
+            <input type="text" name="history" id="history">
           </p>
           <p>
             <label>Source</label>
@@ -73,66 +71,19 @@
             <input type="text" name="type" id="type">
           </p>
           <p>
-            <label>Price</label>
-            <input type="text" name="price" id="price">
-          </p>
-
-          <!-- Outcomes -->
-
-    <h3>Outcomes</h3>
-    <br>
-          <p>
-            <label>Main outcome</label>
-            <input type="text" name="main_out" id="main_out">
+            <label>Refer</label>
+            <input type="text" name="refer" id="refer">
           </p>
           <p>
-          <label>Main evidence</label>
-          <input type="text" name="main_evi" id="main_evi">
+            <label>Examine</label>
+            <input type="text" name="examine" id="examine">
           </p>
           <p>
-          <label>Main efficiency</label>
-          <input class="custom-range" type="range" min=0 max=5 name="main_eff" id="main_eff">
+            <label>Description</label>
+            <input type="text" name="desc" id="desc">
           </p>
-          <br>
-          <p>
-            <label>Second outcome</label>
-            <input type="text" name="sec_out" id="sec_out">
-          </p>
-          <p>
-          <label>Second evidence</label>
-          <input type="text" name="sec_evi" id="sec_evi">
-          </p>
-          <p>
-          <label>Second efficiency</label>
-          <input class="custom-range" type="range" min=0 max=5 name="sec_eff" id="sec_eff">
-          </p>
-          <br>
-          <p>
-            <label>Third outcome</label>
-            <input type="text" name="thi_out" id="thi_out">
-          </p>
-          <p>
-          <label>Third evidence</label>
-          <input type="text" name="thi_evi" id="thi_evi">
-          </p>
-          <p>
-          <label>Third efficiency</label>
-          <input class="custom-range" type="range" min=0 max=5 name="thi_eff" id="thi_eff">
-          </p>
-          <br>
-          <p>
-            <label>Fourth outcome</label>
-            <input type="text" name="fou_out" id="fou_out">
-          </p>
-          <p>
-          <label>Fourth evidence</label>
-          <input type="text" name="fou_evi" id="fou_evi">
-          </p>
-          <p>
-          <label>Fourth efficiency</label>
-          <input class="custom-range" type="range" min=0 max=5 name="fou_eff" id="fou_eff">
-          </p>
-          <br>
+          
+    
         <!-- Warnings -->
     <h3>Warnings</h3>
     <br>
@@ -152,88 +103,85 @@
             <label>Age range</label>
             <input type="text" name="age_range" id="age_range">
         </p>
-        <!-- Interactions -->
-    <h3>Interactions</h3>
-    <br>    
         <p>
-            <label>Compound</label>
-            <input type="text" name="comp1" id="comp1">
-        </p>
-        <br>
+          <label>Why be careful</label>
+          <input type="text" name="wbc" id="wbc">
+      </p>
+      <p class="full">
+        <button type="submit" class="submit">Submit Product</button>
+      </p>
+      </form>
+
+      <h3>ProFinal</h3>
+      <br>
+
+      <form id="proFinal_form">
         <p>
-            <label>P/N</label>
-            <input type="text" name="comp1_pn" id="comp1_pn">
+          <label>Products</label>
+          <select name="products" id="selectProduct">
+          </select> 
         </p>
-        <p>
-            <label>Level of Evidence</label>
-            <input type="text" name="comp1_evi" id="comp1_evi">
-        </p>
-        <p>
-            <label>Compound 2</label>
-            <input type="text" name="comp2" id="comp2">
-        </p>
-        <br>
-        <p>
-            <label>P/N</label>
-            <input type="text" name="comp2_pn" id="comp2_pn">
-        </p>
-        <p>
-            <label>Level of evidence</label>
-            <input type="text" name="comp2_evi" id="comp2_evi">
-        </p>
-        <!-- How to Take -->
-    <h3>How to Take</h3>
-    <br>
-        <p>
-            <label>Main administration form</label>
-            <input type="text" name="main_admin_form" id="main_admin_form">
-        </p>
-        <br>
-        <p>
-            <label>Other ways to consume it</label>
-            <input type="text" name="owtci" id="owtci">
-        </p>
-        <br>
-        <p>
-            <label>Dosage for main outcome</label>
-            <input type="text" name="main_dosage" id="main_dosage">
-        </p>
-        <p>
-            <label>Dose</label>
-            <input type="text" name="main_dose" id="main_dose">
-        </p>
-        <p>
-            <label>Dosage for second outcome</label>
-            <input type="text" name="sec_dosage" id="sec_dosage">
-        </p>
-        <p>
-            <label>Dose</label>
-            <input type="text" name="sec_dose" id="sec_dose">
-        </p>
-        <p>
-            <label>Dosage for third outcome</label>
-            <input type="text" name="thi_dosage" id="thi_dosage">
-        </p>
-        <p>
-            <label>Dose</label>
-            <input type="text" name="thi_dose" id="thi_dose">
-        </p>
-        <p>
-            <label>Dosage for fourth outcome</label>
-            <input type="text" name="fou_dosage" id="fou_dosage">
-        </p>
-        <p>
-            <label>Dose</label>
-            <input type="text" name="fou_dose" id="fou_dose">
-        </p>
-        <p class="full">
-            <button type="submit" class="submit">Submit</button>
-          </p>
+      <p>
+        <label>Topic</label>
+        <select name="topic" id ="selectTopic">
+        </select> 
+      </p>
+      <p>
+        <label>Use</label>
+        <select name="use" id ='selectUse'>
+        </select> 
+      </p>
+      <p>
+        <label>Evidence</label>
+        <select name="evidence" id = "selectEvidence">
+          <option value ="0"></option>
+          <option value ="1">Low</option>
+          <option value ="2">Medium</option>
+          <option value ="3">High</option>
+          <option value ="4">Very High</option>
+        </select> 
+      </p>
+      <p>
+        <label>Consistency</label>
+        <select name="consistency" id = "selectConsistency">
+          <option value ="0"></option>
+          <option value ="1">Low</option>
+          <option value ="2">Medium</option>
+          <option value ="3">High</option>
+          <option value ="4">Very High</option>
+        </select> 
+      </p>
+      <p>
+        <label>Efficiency</label>
+        <select name="efficiency" id = "selectEfficiency">
+          <option value ="0"></option>
+          <option value ="-3">-3</option>
+          <option value ="-2">-2</option>
+          <option value ="-1">-1</option>
+          
+          <option value ="1">1</option>
+          <option value ="2">2</option>
+          <option value ="3">3</option>
+        </select> 
+      </p>
+      <p>
+        <label>Suggestion</label>
+        <select name="suggestion" id = "selectSuggestion">
+          <option value ="1">Secondary</option>
+          <option value ="2">Primary</option>
+          <option value ="3">Core</option>
+        </select> 
+      </p>
+      
+      <p class="full">
+        <button type="submit" class="submitPF">Submit ProFinal</button>
+      </p>
     </form>
+
     </div>
   </div>
 
-    <div class="container insert shadowbox mt-1">
+    <!-- <div class="container insert shadowbox mt-1">
         <button type="button" class="resultbutton" data-toggle="button" aria-pressed="false" autocomplete="off" onclick="showtable()" id="showtable">Nutraceuticals</button>
 
     <br>
@@ -250,14 +198,11 @@
         </tbody>
       </table>
     
-    </div>
+    </div>  -->
     </div>
 
 </div>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-analytics.js"></script>
 <script src="product.js"></script>
 </body>
 </html>
